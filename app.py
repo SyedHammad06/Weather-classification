@@ -11,7 +11,7 @@ def load_model():
 def preprocess_image(image):
     """Preprocess the uploaded image for model prediction"""
     # Resize image to 224x224 pixels
-    image = image.resize(target_size)
+    image = image.resize((224, 224))
     image_array = np.array(image)
     image_array = tf.keras.applications.efficientnet_v2.preprocess_input(image_array)
     image_array = np.expand_dims(image_array, axis=0)
