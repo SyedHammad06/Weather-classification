@@ -11,11 +11,11 @@ def load_model():
 def preprocess_image(image):
     """Preprocess the uploaded image for model prediction"""
     # Resize image to 224x224 pixels
-    img = image.resize((224, 224))
-    # Convert to array and expand dimensions
-    img_array = tf.keras.preprocessing.image.img_to_array(img)
-    img_array = tf.expand_dims(img_array, 0)
-    return img_array
+    image = image.resize(target_size)
+    image_array = np.array(image)
+    image_array = tf.keras.applications.efficientnet_v2.preprocess_input(image_array)
+    image_array = np.expand_dims(image_array, axis=0)
+    return image_array
 
 def predict_weather(model, image):
     """Make prediction on the input image"""
